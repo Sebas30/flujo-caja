@@ -16,3 +16,7 @@ Thumbs.db
 # IDEs
 .vscode/
 .idea/
+
+build/
+dist/
+*.spec

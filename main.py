@@ -45,7 +45,12 @@ class ThemeManager(QObject):
 TM = ThemeManager()
 
 # ── Icon helpers ──────────────────────────────────────────
-ICONS_DIR = os.path.join(os.path.dirname(__file__), "icons")
+def _base_path():
+    if hasattr(sys, "_MEIPASS"):
+        return sys._MEIPASS
+    return os.path.dirname(__file__)
+
+ICONS_DIR = os.path.join(_base_path(), "icons")
 
 def svg_icon(name, color, size=18):
     path = os.path.join(ICONS_DIR, f"{name}.svg")

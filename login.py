@@ -9,6 +9,8 @@ from PyQt6.QtGui import QFont, QPixmap
 from themes import build_stylesheet, DARK
 import database as db
 
+import sys
+import os
 # Reutilizamos el helper svg_icon — se importa desde main en tiempo de ejecución
 # para evitar importación circular; lo redefinimos mínimamente aquí.
 import os
@@ -17,7 +19,12 @@ from PyQt6.QtGui import QPainter
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QApplication
 
-ICONS_DIR = os.path.join(os.path.dirname(__file__), "icons")
+def _base_path():
+    if hasattr(sys, "_MEIPASS"):
+        return sys._MEIPASS
+    return os.path.dirname(__file__)
+
+ICONS_DIR = os.path.join(_base_path(), "icons")
 
 def _svg_icon(name, color, size=18):
     from PyQt6.QtGui import QIcon
